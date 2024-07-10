@@ -1,0 +1,10 @@
+{
+  "api_info": {
+    "vault_domain": "https://sb-gedeonrichter-rim-sandbox.veevavault.com",
+    "api_version": "v24.1"
+  },
+  "vault_settings": {
+    "upload_path": "u13063421/",
+    "object_type": "user_task__v"
+  }
+}

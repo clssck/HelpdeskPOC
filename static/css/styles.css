@@ -1,0 +1,140 @@
+/* Custom styles to complement PicoCSS */
+
+/* Ensure dark theme is applied */
+:root {
+  color-scheme: dark;
+}
+
+/* Custom variables */
+:root {
+  --primary: hsl(195, 85%, 41%);
+  --primary-hover: hsl(195, 90%, 32%);
+  --primary-focus: rgba(16, 149, 193, 0.25);
+  --primary-inverse: #fff;
+  --text-color-light: #fff; /* Text color for light theme */
+  --text-color-dark: #000; /* Text color for dark theme */
+}
+
+/* Adjustments for dark theme */
+[data-theme="dark"] {
+  --background-color: #11191f;
+  --color: hsl(205, 16%, 77%);
+  --h1-color: hsl(205, 20%, 94%);
+  --card-background-color: #141e26;
+  --card-sectionning-background-color: #18232c;
+}
+
+/* Layout adjustments */
+.container {
+  max-width: 800px;
+  padding: 20px;
+}
+
+nav {
+  padding: 10px 0;
+  background-color: var(--card-sectionning-background-color);
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+nav ul:last-child {
+  margin-left: auto;
+}
+
+nav strong {
+  color: var(--h1-color);
+  font-size: 1.2rem;
+}
+
+#themeToggle {
+  background-color: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#themeToggle:hover {
+  background-color: var(--primary);
+  color: var(--primary-inverse);
+}
+
+/* Custom button group */
+.button-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+#rewriteBtn {
+  --background-color: var(--card-sectionning-background-color);
+  color: var(--text-color-light); /* Default to light text color */
+}
+
+[data-theme="light"] #rewriteBtn {
+  color: var(
+    --text-color-dark
+  ); /* Override to dark text color in light theme */
+}
+
+/* Utility classes */
+.hidden {
+  display: none !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .button-group {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Additional improvements */
+
+/* Ensure consistent font sizes */
+body {
+  font-size: 16px;
+}
+
+/* Improve readability */
+p {
+  line-height: 1.6;
+}
+
+/* Enhance button styles */
+button {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--primary-hover);
+  color: var(--primary-inverse);
+}
+
+/* Add more specific comments */
+
+/* Custom styles for form elements */
+input,
+textarea {
+  background-color: var(--card-background-color);
+  color: var(--color);
+  border: 1px solid var(--primary-focus);
+  padding: 10px;
+  border-radius: 4px;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--primary);
+}
+
+/* End of custom styles */

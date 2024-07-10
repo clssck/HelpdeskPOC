@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Veeva Vault RIM - Create User Task</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="container-fluid">
+      <ul>
+        <li><strong>Veeva Vault RIM</strong></li>
+      </ul>
+      <ul>
+        <li>
+          <button
+            id="themeToggle"
+            class="contrast outline"
+            aria-label="Toggle Theme"
+          >
+            Light Mode
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+      <h1>Create User Task</h1>
+      <form id="userTaskForm">
+        <label for="name">
+          Name<span aria-label="required">*</span>
+          <input type="text" id="name" name="name" required />
+        </label>
+
+        <label for="assignedTo">
+          Assigned To<span aria-label="required">*</span>
+          <select id="assignedTo" name="assignedTo" required>
+            <option value="">Select an assignee</option>
+            {% for assignee in assignees %}
+            <option value="{{ assignee }}">{{ assignee }}</option>
+            {% endfor %}
+          </select>
+        </label>
+
+        <label for="category">
+          Category
+          <select id="category" name="category">
+            <option value=""></option>
+            <option value="master_data__c">Master Data</option>
+            <option value="due_date_delay__c">Due Date Delay</option>
+            <option value="publishing__c">Publishing</option>
+          </select>
+        </label>
+
+        <div class="grid">
+          <label for="dueDate">
+            Due Date
+            <input type="date" id="dueDate" name="dueDate" />
+          </label>
+
+          <label for="completionDate">
+            Completion Date
+            <input type="date" id="completionDate" name="completionDate" />
+          </label>
+        </div>
+
+        <label for="description">
+          Description
+          <textarea id="description" name="description" rows="3"></textarea>
+        </label>
+
+        <div class="button-group">
+          <button type="button" id="rewriteBtn" class="secondary">
+            Rewrite with Gemini
+          </button>
+          <button type="submit">Submit Task</button>
+        </div>
+      </form>
+
+      <!-- Task Status -->
+      <article id="statusWindow" class="hidden" aria-live="polite">
+        <h3>Task Submission Status</h3>
+        <div id="statusMessage"></div>
+        <pre id="logContent"></pre>
+      </article>
+
+      <!-- Check Task Status -->
+      <div id="checkStatusContainer" class="hidden">
+        <button id="checkStatusButton">Check Task Status</button>
+      </div>
+
+      <!-- Object ID Result -->
+      <article id="objectIdResult" class="hidden" aria-live="polite">
+        <h3>Object ID Result:</h3>
+        <p id="objectIdMessage"></p>
+      </article>
+    </main>
+
+    <!-- Notification -->
+    <div id="notification" role="alert" class="hidden"></div>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>

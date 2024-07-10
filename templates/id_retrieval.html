@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object ID Retrieval</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>Object ID Retrieval</h1>
+    <form id="idRetrievalForm">
+      <label for="taskName">Task Name (or part of it):</label>
+      <input type="text" id="taskName" name="taskName" required />
+      <button type="submit">Retrieve Object ID</button>
+    </form>
+    <div id="resultContainer" style="display: none">
+      <h2>Result:</h2>
+      <pre id="resultContent"></pre>
+    </div>
+    <div id="logContainer" style="display: none">
+      <h2>Log:</h2>
+      <pre id="logContent"></pre>
+    </div>
+
+    <script>
+      document
+        .getElementById("idRetrievalForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const taskName = document.getElementById("taskName").value;
+          const formData = new FormData();
+          formData.append("taskName", taskName);
+
+          axios
+            .post("/get_object_id", formData)
+            .then(function (response) {
+              const resultContainer =
+                document.getElementById("resultContainer");
+              const resultContent = document.getElementById("resultContent");
+              resultContent.textContent = response.data.message;
+              resultContainer.style.display = "block";
+
+              const logContainer = document.getElementById("logContainer");
+              const logContent = document.getElementById("logContent");
+              logContent.textContent = response.data.log;
+              logContainer.style.display = "block";
+            })
+            .catch(function (error) {
+              console.error("Error:", error);
+              alert(
+                "An error occurred while retrieving the object ID. Please try again."
+              );
+            });
+        });
+    </script>
+  </body>
+</html>
