@@ -1,0 +1,6 @@
+Create a .ENV file with these:
+
+
+VAULT_USERNAME
+VAULT_PASSWORD
+GOOGLE_API_KEY
